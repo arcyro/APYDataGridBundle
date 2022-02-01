@@ -10,11 +10,9 @@ use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class ColumnsTest extends TestCase
 {
-    /** @var Columns */
-    private $columns;
+    private \APY\DataGridBundle\Grid\Columns $columns;
 
-    /** @var AuthorizationCheckerInterface */
-    private $authChecker;
+    private \Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface $authChecker;
 
     public function testGetIterator()
     {
@@ -112,7 +110,7 @@ class ColumnsTest extends TestCase
             ->addExtension($column1)
             ->addExtension($column2);
 
-        $this->assertAttributeEquals(['foo' => $column1, 'bar' => $column2], 'extensions', $this->columns);
+        $this->assertEquals(['foo' => $column1, 'bar' => $column2], 'extensions', $this->columns->getExtensionForColumnType());
     }
 
     public function testHasExtensionForColumnType()
@@ -232,7 +230,7 @@ class ColumnsTest extends TestCase
         return $mocks;
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->authChecker = $this->createMock(AuthorizationCheckerInterface::class);
         $this->columns = new Columns($this->authChecker);

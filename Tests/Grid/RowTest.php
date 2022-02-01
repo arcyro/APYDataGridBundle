@@ -8,8 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class RowTest extends TestCase
 {
-    /** @var Row */
-    private $row;
+    private \APY\DataGridBundle\Grid\Row $row;
 
     public function testSetRepository()
     {
@@ -24,7 +23,7 @@ class RowTest extends TestCase
         $pf = 'id';
         $this->row->setPrimaryField($pf);
 
-        $this->assertAttributeEquals($pf, 'primaryField', $this->row);
+        $this->assertEquals($pf, $this->row->getPrimaryField());
     }
 
     public function testGetPrimaryField()
@@ -160,7 +159,7 @@ class RowTest extends TestCase
         $class = 'Vendor/Bundle/Foo';
         $this->row->setClass($class);
 
-        $this->assertAttributeEquals($class, 'class', $this->row);
+        $this->assertEquals($class, $this->row->getClass());
     }
 
     public function testGetClass()
@@ -176,7 +175,7 @@ class RowTest extends TestCase
         $color = 'red';
         $this->row->setColor($color);
 
-        $this->assertAttributeEquals($color, 'color', $this->row);
+        $this->assertEquals($color, $this->row->getColor());
     }
 
     public function testGetColor()
@@ -192,7 +191,7 @@ class RowTest extends TestCase
         $legend = 'foo';
         $this->row->setLegend($legend);
 
-        $this->assertAttributeEquals($legend, 'legend', $this->row);
+        $this->assertEquals($legend, $this->row->getLegend());
     }
 
     public function testGetLegend()
@@ -203,7 +202,7 @@ class RowTest extends TestCase
         $this->assertEquals($legend, $this->row->getLegend());
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->row = new Row();
     }

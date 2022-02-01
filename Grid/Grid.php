@@ -311,10 +311,8 @@ class Grid implements GridInterface
 
     /**
      * The grid configuration.
-     *
-     * @var GridConfigInterface
      */
-    private $config;
+    private \APY\DataGridBundle\Grid\GridConfigInterface $config;
 
     /**
      * Constructor.
@@ -2278,5 +2276,25 @@ class Grid implements GridInterface
         }
 
         return $this->getFilter($columnId) !== null;
+    }
+
+    /**
+     * Get default order (e.g. my_column_id|asc).
+     *
+     * @return  string
+     */ 
+    public function getDefaultOrder()
+    {
+        return $this->defaultOrder;
+    }
+
+    /**
+     * Get the value of maxResults
+     *
+     * @return  int
+     */ 
+    public function getMaxResults()
+    {
+        return $this->maxResults;
     }
 }
